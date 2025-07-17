@@ -1,9 +1,11 @@
 package com.example.demo.entities;
 
 import jakarta.persistence.*;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "drinks")
+@NoArgsConstructor
 public class Drink extends Food {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

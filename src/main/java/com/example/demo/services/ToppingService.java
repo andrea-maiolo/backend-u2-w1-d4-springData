@@ -11,7 +11,14 @@ public class ToppingService {
     private ToppingRepo toppingRepo;
 
     public void saveTopping(Topping toppingToSave) {
+        if (toppingRepo.existsByName(toppingToSave.getName())) throw new RuntimeException("already in db!");
         toppingRepo.save(toppingToSave);
         System.out.println("topping saved in db!");
     }
+
+    public Topping findById(long id) {
+        return toppingRepo.findById(id).orElseThrow(() -> new RuntimeException("cannot find anything"));
+    }
+
+    //add update and delete for all services
 }

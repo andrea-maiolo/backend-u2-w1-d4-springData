@@ -2,15 +2,14 @@ package com.example.demo.entities;
 
 import jakarta.persistence.*;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
-import lombok.ToString;
 
-import java.util.ArrayList;
 import java.util.List;
 
 @Getter
 @Setter
-@ToString
+@NoArgsConstructor
 @Entity
 @Table(name = "pizzas")
 public class Pizza extends Food {
@@ -18,12 +17,17 @@ public class Pizza extends Food {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @OneToMany
+    @ManyToMany
+    @JoinTable(
+            name = "pizzas_toppings",
+            joinColumns = @JoinColumn(name = "pizza_id"),
+            inverseJoinColumns = @JoinColumn(name = "topping_id")
+    )
     private List<Topping> listToppings;
 
-    public Pizza(String name, double price, int calories) {
+    public Pizza(String name, double price, int calories, List<Topping> toppingList) {
         super(name, price, calories);
-        this.listToppings = new ArrayList<>();
+        this.listToppings = toppingList;
     }
 
     public void addTopping(Topping t) {

@@ -2,9 +2,11 @@ package com.example.demo.entities;
 
 
 import jakarta.persistence.*;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+@NoArgsConstructor
 public abstract class Food {
     protected String name;
     protected double price;
