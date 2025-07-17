@@ -20,5 +20,11 @@ public class ToppingService {
         return toppingRepo.findById(id).orElseThrow(() -> new RuntimeException("cannot find anything"));
     }
 
+    public void deleteTopping(long id) {
+        Topping t = this.findById(id);
+        toppingRepo.delete(t);
+        System.out.println("topping deleted");
+    }
+
     //add update and delete for all services
 }

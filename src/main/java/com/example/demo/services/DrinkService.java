@@ -18,4 +18,10 @@ public class DrinkService {
     public Drink findById(long id) {
         return drinkRepo.findById(id).orElseThrow(() -> new RuntimeException("cannot find anything"));
     }
+
+    public void deleteTopping(long id) {
+        Drink d = this.findById(id);
+        drinkRepo.delete(d);
+        System.out.println("drink deleted");
+    }
 }

@@ -18,4 +18,10 @@ public class PizzaService {
     public Pizza findById(long id) {
         return pizzaRepo.findById(id).orElseThrow(() -> new RuntimeException("cannot find anything"));
     }
+
+    public void deletePizza(long id) {
+        Pizza p = this.findById(id);
+        pizzaRepo.delete(p);
+        System.out.println("pizza deleted");
+    }
 }
